@@ -22,6 +22,6 @@ class AutalizaAutorController(val autorRepository: AutorRepository) {
         val autor = possivelAutor.get()
         autor.descricao = descricao
 
-        return HttpResponse.ok(DetalhesDoAutorResponse(autor))
+        return HttpResponse.ok(DetalhesDoAutorResponse(autor.nome, autor.email, autor.descricao))
     }
 }

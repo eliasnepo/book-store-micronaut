@@ -20,4 +20,8 @@ class Autor(
     var id: Long? = null
 
     val criadoEm: LocalDateTime = LocalDateTime.now()
+
+    override fun toString(): String {
+        return "Autor(nome='$nome', email='$email', descricao='$descricao', endereco=$endereco, id=$id, criadoEm=$criadoEm)"
+    }
 }

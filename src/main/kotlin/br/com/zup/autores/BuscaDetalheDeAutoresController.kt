@@ -12,7 +12,7 @@ class BuscaDetalheDeAutoresController(val autorRepository: AutorRepository) {
     fun lista(@QueryValue(defaultValue = "") email: String): HttpResponse<Any> {
         if (email.isBlank()) {
             val autores = autorRepository.findAll()
-            val resposta = autores.map { autor -> DetalhesDoAutorResponse(autor) }
+            val resposta = autores.map { autor -> DetalhesDoAutorResponse(autor.nome, autor.email, autor.descricao) }
             return HttpResponse.ok(resposta)
         }
 
@@ -21,6 +21,6 @@ class BuscaDetalheDeAutoresController(val autorRepository: AutorRepository) {
             return HttpResponse.badRequest()
         }
 
-        return HttpResponse.ok(DetalhesDoAutorResponse(possivelAutor.get()))
+        return HttpResponse.ok(DetalhesDoAutorResponse(possivelAutor.get().nome, possivelAutor.get().email, possivelAutor.get().descricao))
     }
 }
